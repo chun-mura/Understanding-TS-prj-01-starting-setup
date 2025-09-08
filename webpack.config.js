@@ -4,12 +4,23 @@ module.exports = {
   mode: 'development',
   entry: './src/app.ts',
   output: {
-    filename: 'bundle.js',
+    filename: 'app.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    publicPath: '/dist/',
     clean: true,
   },
   devtool: 'inline-source-map',
+  devServer: {
+    static: {
+      directory: path.join(__dirname, '/'),
+      watch: true,
+    },
+    port: 8080,
+    hot: true,
+    liveReload: true,
+    open: true,
+    watchFiles: ['src/**/*', 'index.html'],
+  },
   module: {
     rules: [
       {
@@ -21,16 +32,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js'],
-    fallback: {
-      "path": false,
-      "fs": false
-    }
-  },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, '.'),
-    },
-    compress: true,
-    port: 8080,
   },
 };

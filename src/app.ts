@@ -1,1 +1,1 @@
-// ここにコードを書きます
+console.log('Hello World');
